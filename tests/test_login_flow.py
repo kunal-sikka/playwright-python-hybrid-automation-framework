@@ -15,7 +15,7 @@ def test_login_fails_with_invalid_password(page, settings, user_credentials):
     login_page = LoginPage(page, settings)
 
     login_page.navigate_to_site()
-    login_page.login(
+    login_page.login_with_invalid_credentials(
         user_credentials["userEmail"],
         "InvalidPassword@123",
     )

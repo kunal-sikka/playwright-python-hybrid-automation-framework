@@ -26,3 +26,9 @@ class LoginPage:
     def expect_login_error_visible(self):
         with allure.step("Verify invalid login error message is visible"):
             expect(self.page.get_by_text("Incorrect email or password.")).to_be_visible()
+
+    def login_with_invalid_credentials(self, user_email, user_password):
+        with allure.step("Login with invalid credentials"):
+            self.page.get_by_role("textbox", name="email@example.com").fill(user_email)
+            self.page.get_by_role("textbox", name="enter your passsword").fill(user_password)
+            self.page.locator("#login").click()
