@@ -1,0 +1,55 @@
+# macOS/system files
+.DS_Store
+**/.DS_Store
+__MACOSX/
+**/__MACOSX/
+
+# virtual environments
+.venv/
+venv/
+env/
+
+# Python caches
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# test/tool caches
+.pytest_cache/
+**/.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE/local assistant files
+.idea/
+.vscode/
+.claude/
+
+# generated test artifacts
+test-results/
+**/test-results/
+playwright-report/
+allure-results/
+**/allure-results/
+allure-report/
+**/allure-report/
+reports/
+**/reports/
+screenshots/
+**/screenshots/
+videos/
+**/videos/
+traces/
+**/traces/
+
+*.log
+*.png
+
+# credentials/secrets
+.env
+*.env
+*.secret
+secrets.*
+data/credentials*.json
+!data/credentials.example.json

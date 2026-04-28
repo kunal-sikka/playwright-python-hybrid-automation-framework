@@ -1,0 +1,10 @@
+{
+  "qa": {
+    "base_url": "https://rahulshettyacademy.com",
+    "client_path": "/client",
+    "default_order": {
+      "country": "India",
+      "product_ordered_id": "6960eae1c941646b7a8b3ed3"
+    }
+  }
+}
