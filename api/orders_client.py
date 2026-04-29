@@ -1,5 +1,5 @@
 import allure
-from playwright.sync_api import Playwright
+from playwright.sync_api import Error as PlaywrightError
 
 from api.assertions import assert_json_has_keys, assert_status
 from config.settings import Settings
@@ -47,13 +47,26 @@ class OrdersClient:
             return response.json()
 
     def delete_order(self, token: str, order_id: str) -> dict:
-        with allure.step("Delete order through Orders API"):
-            response = self.request_context.delete(
-                f"/api/ecom/order/delete-order/{order_id}",
-                headers={"authorization": token},
-            )
-            assert_status(response, 200, "Delete order API")
-            return response.json()
+        last_error = None
+
+        for attempt in range(3):
+            try:
+                with allure.step("Delete order through Orders API"):
+                    response = self.request_context.delete(
+                        f"/api/ecom/order/delete-order/{order_id}",
+                        headers={"authorization": token},
+                    )
+
+                    assert_status(response, 200, "Delete order API")
+                    return response.json()
+
+            except PlaywrightError as error:
+                last_error = error
+                if attempt == 2:
+                    raise
+                time.sleep(2)
+
+        raise last_error
 
     def delete_order_without_token(self, order_id: str):
         with allure.step("Attempt to delete order without authorization token"):
