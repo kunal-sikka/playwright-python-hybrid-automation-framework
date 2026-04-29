@@ -6,6 +6,7 @@
 ![Pytest](https://img.shields.io/badge/pytest-framework-orange)
 ![BDD](https://img.shields.io/badge/bdd-pytest--bdd-yellow)
 ![Allure](https://img.shields.io/badge/reporting-allure-purple)
+[![Allure Report](https://img.shields.io/badge/Allure-View%20Report-blue)](https://kunal-sikka.github.io/playwright-python-hybrid-automation-framework/)
 
 ---
 
