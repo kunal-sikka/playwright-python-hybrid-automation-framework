@@ -12,7 +12,7 @@ class MissingCredentialsError(RuntimeError):
 
 def get_credentials() -> dict:
     if load_dotenv:
-        load_dotenv()
+        load_dotenv(override=True)
 
     email = os.getenv("TEST_EMAIL")
     password = os.getenv("TEST_PASSWORD")
