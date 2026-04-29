@@ -6,25 +6,30 @@ from config.settings import Settings
 
 
 class AuthClient:
-    def __init__(self, playwright: Playwright, settings: Settings):
-        self.request_context = playwright.request.new_context(base_url=settings.client_base_url)
+    def __init__(self, request_context):
+        self.request_context = request_context
 
-    def login(self, user_credentials: dict) -> dict:
-        with allure.step("Authenticate user through Login API"):
-            response = self.request_context.post(
-                "/api/ecom/auth/login",
-                data={
-                    "userEmail": user_credentials["userEmail"],
-                    "userPassword": user_credentials["userPassword"],
-                },
-            )
+    def login(self, user_credentials):
+        last_error = None
 
-            assert_status(response, 200, "Login API")
-            response_body = response.json()
-            assert_json_has_keys(response_body, ["token"], "Login API")
-        return response_body
+        for attempt in range(3):
+            try:
+                response = self.request_context.post(
+                    "/api/ecom/auth/login",
+                    data=user_credentials,
+                )
+                assert_status(response, 200, "Login API")
+                return response.json()
 
-    def get_token(self, user_credentials: dict) -> str:
+            except PlaywrightError as error:
+                last_error = error
+                if attempt == 2:
+                    raise
+                time.sleep(2)
+
+        raise last_error
+
+    def get_token(self, user_credentials):
         return self.login(user_credentials)["token"]
 
     def login_with_payload(self, payload: dict):
