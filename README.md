@@ -15,9 +15,9 @@ This is a **production-style hybrid automation framework** built using Playwrigh
 
 It demonstrates a **modern QA strategy** where:
 
-- API is used for **fast test setup**
-- UI is used for **end-to-end validation**
-- BDD is used for **business-readable scenarios**
+* API is used for **fast test setup**
+* UI is used for **end-to-end validation**
+* BDD is used for **business-readable scenarios**
 
 👉 Designed to reflect how real-world QA teams build **scalable and reliable automation systems**
 
@@ -25,27 +25,27 @@ It demonstrates a **modern QA strategy** where:
 
 ## ⚡ Key Highlights
 
-- Hybrid testing (**API + UI validation**)
-- Clean **Page Object Model (POM)** architecture
-- Dedicated **API client layer** (Auth, Orders)
-- Reusable **workflow layer for E2E setup**
-- **BDD implementation** using pytest-bdd
-- Secure credential handling (**.env + GitHub Secrets**)
-- Automatic **failure screenshots**
-- **Allure reporting** with readable steps
-- **CI/CD pipeline** with GitHub Actions
-- Retry mechanism for flaky network/API calls
+* Hybrid testing (**API + UI validation**)
+* Clean **Page Object Model (POM)** architecture
+* Dedicated **API client layer** (Auth, Orders, Products)
+* Reusable **workflow layer for E2E setup**
+* **BDD implementation** using pytest-bdd
+* Secure credential handling (**.env + GitHub Secrets**)
+* Automatic **failure screenshots**
+* **Allure reporting** with readable steps
+* **CI/CD pipeline** with GitHub Actions
+* Retry mechanism for flaky network/API calls
 
 ---
 
 ## 🛠 Tech Stack
 
-- Python 3.12
-- Playwright (UI + API)
-- Pytest
-- pytest-bdd
-- Allure Reports
-- GitHub Actions
+* Python 3.12
+* Playwright (UI + API)
+* Pytest
+* pytest-bdd
+* Allure Reports
+* GitHub Actions
 
 ---
 
@@ -53,17 +53,19 @@ It demonstrates a **modern QA strategy** where:
 
 The framework follows **separation of concerns**:
 
-- `pages/` → UI interactions (POM)
-- `api/` → Backend API layer
-- `workflows/` → Hybrid orchestration logic
-- `tests/` → UI, API, and E2E tests
-- `features/` → BDD scenarios
+* `pages/` → UI interactions (POM)
+* `api/` → Backend API layer
+* `workflows/` → Hybrid orchestration logic
+* `tests/` → UI, API, and E2E tests
+* `features/` → BDD scenarios
 
 👉 Result: **clean, maintainable, scalable automation design**
 
 ---
 
 ## 📁 Project Structure
+
+```text
 .
 ├── api/
 │   ├── assertions.py          # API response validations
@@ -136,7 +138,7 @@ The framework follows **separation of concerns**:
 ├── requirements.txt           # Dependencies
 ├── README.md
 ├── .gitignore
-
+```
 
 ---
 
@@ -147,23 +149,27 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 playwright install
+```
 
 ---
 
-🔐 Environment Setup
+## 🔐 Environment Setup
 
-Create a .env file in the root:
+Create a `.env` file in the root:
 
+```
 TEST_EMAIL=your-email@example.com
 TEST_PASSWORD=your-password
+```
 
-.env is not committed for security
-GitHub CI uses repository secrets
+* `.env` is **not committed** for security
+* GitHub CI uses **repository secrets**
 
 ---
 
-▶️ Running Tests
+## ▶️ Running Tests
 
+```bash
 pytest
 pytest --env=qa
 pytest -m api
@@ -172,96 +178,106 @@ pytest -m e2e
 pytest -m bdd
 pytest --browser_name=firefox
 pytest --headed
+```
 
 ---
 
-🔁 BDD Coverage
+## 🔁 BDD Coverage
 
 BDD scenarios validate business flows such as:
 
-Login
-Add to cart
-Checkout
-API order creation
-API-created order visible in UI
-Order history validation
+* Login
+* Add to cart
+* Checkout
+* API order creation
+* API-created order visible in UI
+* Order history validation
 
 Example:
+
+```gherkin
 Feature: Login
 
   Scenario: User logs in with valid credentials
     Given login user is on the login page
     When login user logs in with valid credentials
     Then login user should see the products page
+```
 
 ---
 
-🔄 CI/CD Pipeline
-Runs on every push & pull request
-Executes full test suite
-Uses secure GitHub Secrets
+## 🔄 CI/CD Pipeline
+
+* Runs on every push & pull request
+* Executes full test suite
+* Uses secure GitHub Secrets
+
 Uploads:
-Allure results
-Failure screenshots
+
+* Allure results
+* Failure screenshots
+
 Includes retry for flaky tests
 
 ---
 
-📊 Reporting
+## 📊 Reporting
 
 Allure report provides:
 
-Feature-based grouping
-Step-level execution logs
-Business-readable test flows
+* Feature-based grouping
+* Step-level execution logs
+* Business-readable test flows
 
 To generate locally:
 
+```bash
 pytest --alluredir=allure-results
 allure serve allure-results
+```
 
 ---
 
-🔥 Flagship Hybrid Flow
+## 🔥 Flagship Hybrid Flow
 
 This project demonstrates a real-world high-value scenario:
 
-Generate login token via API
-Create order via API
-Login via UI
-Navigate to order history
-Validate API-created order in UI
+1. Generate login token via API
+2. Create order via API
+3. Login via UI
+4. Navigate to order history
+5. Validate API-created order in UI
 
 👉 Reduces UI dependency and speeds up E2E testing significantly
 
 ---
 
-🤖 AI-Assisted Development
+## 🤖 AI-Assisted Development
 
-This framework leverages tools like Codex and Claude to enhance productivity:
+This framework leverages tools like **Codex and Claude** to enhance productivity:
 
-Accelerated framework setup and refactoring
-Improved code quality and structure
-Faster debugging and issue resolution
+* Accelerated framework setup and refactoring
+* Improved code quality and structure
+* Faster debugging and issue resolution
 
-👉 AI was used as a productivity accelerator, while all architecture, validation logic, and QA decisions were designed and verified manually
+👉 AI was used as a **productivity accelerator**, while all architecture, validation logic, and QA decisions were **designed and verified manually**
 
 ---
 
-💼 Why This Project Matters
+## 💼 Why This Project Matters
 
 This project showcases:
 
-Real-world QA automation architecture
-Hybrid testing strategy (API + UI)
-Scalable and maintainable design
-CI/CD readiness
-Strong QA engineering practices
+* Real-world QA automation architecture
+* Hybrid testing strategy (API + UI)
+* Scalable and maintainable design
+* CI/CD readiness
+* Strong QA engineering practices
 
 👉 Built to reflect skills directly applicable to production environments and client projects
 
 ---
 
-📬 Contact
+## 📬 Contact
 
 If you're interested in collaborating or discussing QA automation opportunities, feel free to connect.
