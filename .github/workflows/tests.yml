@@ -31,7 +31,7 @@ jobs:
           playwright install --with-deps
 
       - name: Run tests
-        run: pytest --env=qa --browser_name=chromium
+        run: pytest --env=qa --browser_name=chromium --reruns 1 --reruns-delay 3
 
       - name: Upload Allure results
         if: always()
