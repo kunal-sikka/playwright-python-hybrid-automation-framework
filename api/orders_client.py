@@ -1,5 +1,6 @@
 import allure
 from playwright.sync_api import Error as PlaywrightError
+from playwright.sync_api import Playwright
 
 from api.assertions import assert_json_has_keys, assert_status
 from config.settings import Settings
