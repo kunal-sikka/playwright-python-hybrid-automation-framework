@@ -1,220 +1,267 @@
-# Hybrid UI + API Automation Framework with Playwright Python
+# 🚀 Playwright Python Hybrid Automation Framework (UI + API + BDD)
 
-Production-style test automation framework demonstrating hybrid end-to-end validation with Playwright, Pytest, and Pytest-BDD.
+![CI](https://github.com/kunal-sikka/playwright-python-hybrid-automation-framework/actions/workflows/tests.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![Playwright](https://img.shields.io/badge/playwright-tested-green)
+![Pytest](https://img.shields.io/badge/pytest-framework-orange)
+![BDD](https://img.shields.io/badge/bdd-pytest--bdd-yellow)
+![Allure](https://img.shields.io/badge/reporting-allure-purple)
 
-## Tech Stack
+---
 
-- Python
-- Playwright
+## 📌 Overview
+
+This is a **production-style hybrid automation framework** built using Playwright (Python), Pytest, and BDD.
+
+It demonstrates a **modern QA strategy** where:
+
+- API is used for **fast test setup**
+- UI is used for **end-to-end validation**
+- BDD is used for **business-readable scenarios**
+
+👉 Designed to reflect how real-world QA teams build **scalable and reliable automation systems**
+
+---
+
+## ⚡ Key Highlights
+
+- Hybrid testing (**API + UI validation**)
+- Clean **Page Object Model (POM)** architecture
+- Dedicated **API client layer** (Auth, Orders)
+- Reusable **workflow layer for E2E setup**
+- **BDD implementation** using pytest-bdd
+- Secure credential handling (**.env + GitHub Secrets**)
+- Automatic **failure screenshots**
+- **Allure reporting** with readable steps
+- **CI/CD pipeline** with GitHub Actions
+- Retry mechanism for flaky network/API calls
+
+---
+
+## 🛠 Tech Stack
+
+- Python 3.12
+- Playwright (UI + API)
 - Pytest
-- Pytest-BDD
-- Allure Report
-- Playwright APIRequestContext
-- Page Object Model
-- Domain-based API clients
+- pytest-bdd
+- Allure Reports
+- GitHub Actions
 
-## What This Framework Demonstrates
+---
 
-- API-driven test data setup before UI validation
-- Dedicated API clients for authentication and order workflows
-- Reusable hybrid workflow layer for E2E setup
-- Page Object Model for reusable UI actions
-- Pytest fixtures for browser lifecycle management
-- Configurable viewport and headed/headless execution
-- Screenshot capture on UI test failure
-- API-only and hybrid E2E coverage
-- Data-driven E2E tests
-- BDD scenario coverage for business-readable flows
-- Cross-browser execution through CLI options
-- Allure results with features, stories, severity, titles, and business-readable steps
-- GitHub Actions pipeline with test artifact upload
+## 🧠 Architecture Approach
 
-## Project Structure
+The framework follows **separation of concerns**:
 
-```text
+- `pages/` → UI interactions (POM)
+- `api/` → Backend API layer
+- `workflows/` → Hybrid orchestration logic
+- `tests/` → UI, API, and E2E tests
+- `features/` → BDD scenarios
+
+👉 Result: **clean, maintainable, scalable automation design**
+
+---
+
+## 📁 Project Structure
 .
 ├── api/
-│   ├── assertions.py
-│   ├── auth_client.py
-│   ├── orders_client.py
-│   └── workflows.py
+│   ├── assertions.py          # API response validations
+│   ├── auth_client.py         # Authentication API client
+│   ├── orders_client.py       # Orders API client
+│   ├── products_client.py     # Products API client
+│   └── workflows.py           # Hybrid API workflows
+│
 ├── config/
-│   ├── environments.json
-│   ├── settings.py
-│   └── test_data.py
+│   ├── environments.json      # Environment configs (QA, etc.)
+│   ├── settings.py            # Config loader & models
+│   └── test_data.py           # Static test data
+│
 ├── data/
-│   └── credentials.example.json
+│   └── credentials.example.json   # Sample credentials structure
+│
 ├── docs/
-│   └── test_cases.md
-├── features/
+│   └── QA_Test_Suite_Hybrid_Playwright_Framework.xlsx   # Test documentation
+│
+├── features/                  # BDD feature files
 │   ├── api_order.feature
 │   ├── cart.feature
 │   ├── checkout.feature
 │   ├── hybrid_order.feature
 │   ├── login.feature
 │   └── order_history.feature
-├── pages/
+│
+├── pages/                     # Page Object Model (UI)
+│   ├── cart_page.py
+│   ├── checkout_page.py
+│   ├── confirmation_page.py
 │   ├── dashboard_page.py
 │   ├── login_page.py
 │   ├── order_details_page.py
 │   ├── order_history_page.py
 │   └── register_page.py
+│
+├── tests/
+│   ├── step_definitions/      # BDD step implementations
+│   │   ├── test_api_order_steps.py
+│   │   ├── test_cart_steps.py
+│   │   ├── test_checkout_steps.py
+│   │   ├── test_hybrid_order_steps.py
+│   │   ├── test_login_steps.py
+│   │   └── test_order_history_steps.py
+│   │
+│   ├── test_api_auth.py
+│   ├── test_api_order_flow.py
+│   ├── test_api_order_negative.py
+│   ├── test_api_product_flow.py
+│   ├── test_api_security.py
+│   ├── test_cart_flow.py
+│   ├── test_checkout_flow.py
+│   ├── test_e2e_flow.py
+│   ├── test_login_flow.py
+│   ├── test_order_flow.py
+│   └── test_registration_flow.py
+│
+├── utils/
+│   ├── credentials.py         # Env-based credential handling
+│   ├── product_factory.py     # Test data generator
+│   └── user_factory.py        # User data factory
+│
 ├── .github/
 │   └── workflows/
-│       └── tests.yml
-├── conftest.py
-├── pytest.ini
-├── requirements.txt
-├── tests/
-│   ├── step_definitions/
-│   └── test_*.py
-```
+│       └── tests.yml          # CI pipeline
+│
+├── conftest.py                # Pytest fixtures
+├── pytest.ini                 # Pytest configuration
+├── requirements.txt           # Dependencies
+├── README.md
+├── .gitignore
 
-## Setup
+
+---
+
+## ⚙️ Setup
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 playwright install
-```
 
-## 🔐 Environment Setup
+---
 
-Live tests require valid demo application credentials through environment variables. Credentials are never read from committed files.
+🔐 Environment Setup
 
-macOS/Linux:
+Create a .env file in the root:
 
-```bash
-export TEST_EMAIL="your-email@example.com"
-export TEST_PASSWORD="your-password"
-```
-
-Windows PowerShell:
-
-```powershell
-$env:TEST_EMAIL="your-email@example.com"
-$env:TEST_PASSWORD="your-password"
-```
-
-Optional local `.env` support:
-
-```text
 TEST_EMAIL=your-email@example.com
 TEST_PASSWORD=your-password
-```
 
-For GitHub Actions, add repository secrets named `TEST_EMAIL` and `TEST_PASSWORD`.
+.env is not committed for security
+GitHub CI uses repository secrets
 
-## Configuration
+---
 
-Environment-level values are managed in `config/environments.json`:
+▶️ Running Tests
 
-- base application URL
-- client application path
-- default order country
-- default product ID used for API order creation
-
-The default environment is `qa`.
-
-## Run Tests
-
-```bash
 pytest
 pytest --env=qa
 pytest -m api
-pytest -m bdd
+pytest -m ui
 pytest -m e2e
+pytest -m bdd
 pytest --browser_name=firefox
 pytest --headed
-pytest --viewport-width=1920 --viewport-height=1080
-```
 
-## BDD Test Coverage
+---
 
-BDD scenarios live in `features/`, with step definitions in `tests/step_definitions/`.
+🔁 BDD Coverage
 
-Covered BDD flows:
+BDD scenarios validate business flows such as:
 
-- valid login
-- add product to cart
-- checkout/place order
-- API order creation
-- API-created order visible in UI
-- order history validation
+Login
+Add to cart
+Checkout
+API order creation
+API-created order visible in UI
+Order history validation
 
-Run BDD tests:
-
-```bash
-pytest tests/step_definitions
-pytest -m bdd
-pytest --alluredir=allure-results
-```
-
-Sample scenario:
-
-```gherkin
+Example:
 Feature: Login
 
   Scenario: User logs in with valid credentials
     Given login user is on the login page
     When login user logs in with valid credentials
     Then login user should see the products page
-```
 
-Pytest writes Allure result files to:
+---
 
-```text
-allure-results/
-```
+🔄 CI/CD Pipeline
+Runs on every push & pull request
+Executes full test suite
+Uses secure GitHub Secrets
+Uploads:
+Allure results
+Failure screenshots
+Includes retry for flaky tests
 
-The Allure report groups coverage by:
+---
 
-- API Validation
-- UI Validation
-- Hybrid E2E
-- BDD Hybrid E2E
+📊 Reporting
 
-Each test includes business-readable steps such as authentication, API order creation, UI login, order history navigation, and final order detail validation.
+Allure report provides:
 
-To generate and open a local Allure report, install the Allure command-line tool, then run:
+Feature-based grouping
+Step-level execution logs
+Business-readable test flows
 
-```bash
+To generate locally:
+
+pytest --alluredir=allure-results
 allure serve allure-results
-```
 
-## Failure Artifacts
+---
 
-Failed tests that use the framework `page` fixture automatically capture a full-page screenshot:
+🔥 Flagship Hybrid Flow
 
-```text
-test-results/screenshots/
-```
+This project demonstrates a real-world high-value scenario:
 
-## CI/CD
+Generate login token via API
+Create order via API
+Login via UI
+Navigate to order history
+Validate API-created order in UI
 
-GitHub Actions runs the Playwright Pytest suite on push, pull request, and manual dispatch.
+👉 Reduces UI dependency and speeds up E2E testing significantly
 
-The workflow uploads:
+---
 
-- `allure-results/`
-- `test-results/screenshots/`
+🤖 AI-Assisted Development
 
-Live credentials are intentionally not committed. Configure these GitHub repository secrets to run live tests in CI:
+This framework leverages tools like Codex and Claude to enhance productivity:
 
-- `TEST_EMAIL`
-- `TEST_PASSWORD`
+Accelerated framework setup and refactoring
+Improved code quality and structure
+Faster debugging and issue resolution
 
-Without local credentials or configured CI secrets, tests fail fast with a clear setup error.
+👉 AI was used as a productivity accelerator, while all architecture, validation logic, and QA decisions were designed and verified manually
 
-## Current Flagship Scenario
+---
 
-1. Login token is generated using the API.
-2. Order is created through the API.
-3. User logs in through the UI.
-4. User navigates to order history.
-5. UI verifies the API-created order details page.
+💼 Why This Project Matters
 
-## Portfolio Notes
+This project showcases:
 
-This project is designed to showcase practical QA automation skills that clients care about: faster E2E setup, reduced UI flakiness, reusable page objects, and clear test organization.
+Real-world QA automation architecture
+Hybrid testing strategy (API + UI)
+Scalable and maintainable design
+CI/CD readiness
+Strong QA engineering practices
+
+👉 Built to reflect skills directly applicable to production environments and client projects
+
+---
+
+📬 Contact
+
+If you're interested in collaborating or discussing QA automation opportunities, feel free to connect.
