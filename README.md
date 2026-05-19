@@ -281,4 +281,4 @@ This project showcases:
 
 ## 📬 Contact
 
-If you're interested in collaborating or discussing QA automation opportunities, feel free to connect.
+💼 **Hire me on Upwork:** [Click here to view my Upwork Profile & discuss your project](https://www.upwork.com/freelancers/~01c0d8bceb13fb5125)
